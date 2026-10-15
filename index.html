@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Almanya Rehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column, a summary table first, then one entry per new feature; accent is feldgrau. */
+:root {
+  --paper: #f4f5f1;
+  --ink: #1d2733;
+  --muted: #586472;
+  --line: #cfd6de;
+  --horizon: #5f6d52;
+  --horizon-soft: #e6eadf;
+  --ok: #2f7a4f;
+  --ok-soft: #dcefe3;
+  --part: #9a6a12;
+  --part-soft: #f6ead2;
+  --no: #a33a32;
+  --no-soft: #f5dfdc;
+  --card: #ffffff;
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #151913; --ink: #e3e9ef; --muted: #9aa7b5; --line: #2b3642;
+    --horizon: #a9b896; --horizon-soft: #232a1e;
+    --ok: #7cc79b; --ok-soft: #173326; --part: #e0b45e; --part-soft: #352a14;
+    --no: #ee8c84; --no-soft: #3a1d1b; --card: #18212b; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #151913; --ink: #e3e9ef; --muted: #9aa7b5; --line: #2b3642;
+  --horizon: #a9b896; --horizon-soft: #232a1e;
+  --ok: #7cc79b; --ok-soft: #173326; --part: #e0b45e; --part-soft: #352a14;
+  --no: #ee8c84; --no-soft: #3a1d1b; --card: #18212b; color-scheme: dark;
+}
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 18px; padding-block: 36px 64px; display: grid; gap: 40px; }
+header { display: grid; gap: 10px; border-bottom: 3px solid var(--horizon); padding-bottom: 20px; }
+.eyebrow { font-family: var(--display); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--horizon); font-size: 15px; }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(36px, 7vw, 56px); line-height: 1; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 700; font-size: 28px; margin: 0; letter-spacing: .01em; text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 600; font-size: 24px; margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 66ch; }
+.lead { color: var(--muted); font-size: 17px; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 18px; font-size: 14px; color: var(--muted); }
+.chip { display: inline-block; font-family: var(--display); font-weight: 600; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; padding: 2px 9px; border-radius: 3px; white-space: nowrap; }
+.chip.ok { color: var(--ok); background: var(--ok-soft); }
+.chip.part { color: var(--part); background: var(--part-soft); }
+.chip.no { color: var(--no); background: var(--no-soft); }
+section { display: grid; gap: 16px; }
+.table-box { overflow-x: auto; border: 1px solid var(--line); background: var(--card); }
+table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--display); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: 14px; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+td a { color: var(--horizon); }
+.entries { display: grid; gap: 22px; }
+.entry { background: var(--card); border: 1px solid var(--line); padding: 18px 18px 20px; display: grid; gap: 12px; min-width: 0; }
+.entry-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 14px; }
+.fr { font-style: italic; color: var(--muted); font-size: 14px; }
+.effects { display: flex; flex-wrap: wrap; gap: 6px; }
+.fx { font-family: var(--mono); font-size: 13px; padding: 2px 7px; border: 1px solid var(--line); border-radius: 3px; font-variant-numeric: tabular-nums; }
+.label { font-family: var(--display); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; font-size: 13px; color: var(--horizon); }
+ol, ul { margin: 0; padding-left: 22px; display: grid; gap: 6px; max-width: 66ch; }
+.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 8px; }
+.path { border-left: 3px solid var(--horizon); background: var(--horizon-soft); padding: 8px 10px; display: grid; gap: 2px; min-width: 0; }
+.path b { font-family: var(--display); font-weight: 600; font-size: 15px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.focus { font-weight: 600; }
+.note { border-left: 3px solid var(--line); padding-left: 12px; color: var(--muted); font-size: 15px; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 6px; }
+a:focus-visible { outline: 2px solid var(--horizon); outline-offset: 2px; }
+.search { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 2; background: var(--paper); padding-block: 12px; border-bottom: 1px solid var(--line); display: grid; gap: 6px; }
+.search label { font-family: var(--display); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; font-size: 14px; color: var(--horizon); }
+.search-row { display: flex; gap: 8px; min-width: 0; }
+.search input { flex: 1; min-width: 0; font: inherit; font-size: 17px; padding: 10px 12px; border: 2px solid var(--line); border-radius: 4px; background: var(--card); color: var(--ink); }
+.search input:focus-visible { outline: none; border-color: var(--horizon); }
+.search button { font-family: var(--display); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: 15px; padding: 0 14px; border: 2px solid var(--line); border-radius: 4px; background: var(--card); color: var(--muted); cursor: pointer; }
+.search button:hover { color: var(--ink); border-color: var(--horizon); }
+.search button:focus-visible { outline: 2px solid var(--horizon); outline-offset: 2px; }
+.count { font-size: 14px; color: var(--muted); min-height: 1.4em; }
+.empty { background: var(--card); border: 1px dashed var(--line); padding: 18px; color: var(--muted); }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">AGORA Sub mod [hegamon] · Almanya</div>
+    <h1>Almanya Rehberi</h1>
+    <p class="lead">Alt modda Almanya'ya eklenen yeni focus ödülleri, core'lar ve danışmanlar. Focus ve karar adları oyundaki İngilizce adlarıyla yazıldı.</p>
+    <div class="legend">
+      <span><span class="chip ok">Focus</span> focus ağacından alınır</span>
+      <span><span class="chip part">Karar</span> kararlar menüsünden alınır</span>
+      <span><span class="chip no">Kendiliğinden</span> şartlar tutunca kendisi olur</span>
+      <span><span class="chip part">Danışman</span> siyaset ekranından seçilir</span>
+    </div>
+  </header>
+
+  <div class="search" role="search">
+    <label for="q">Ara</label>
+    <div class="search-row">
+      <input id="q" type="search" placeholder="Örn. Lebensraum, core, İsviçre, danışman" autocomplete="off" spellcheck="false">
+      <button id="clear" type="button">Temizle</button>
+    </div>
+    <p id="count" class="count" aria-live="polite">Türkçe ya da oyundaki İngilizce adını yaz.</p>
+  </div>
+
+  <section aria-labelledby="ozet">
+    <h2 id="ozet">Özet</h2>
+    <div class="table-box">
+      <table>
+        <thead><tr><th>Yenilik</th><th>Ne yapar</th><th>Tür</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#fuhrer">The Führer's Dream</a></td><td>156 state'e core, Lebensraum Achieved ruhu</td><td><span class="chip ok">Focus</span></td></tr>
+          <tr><td><a href="#gro">Großdeutsches Reich</a></td><td>İsviçre, Lüksemburg ve Polonya'da ek core'lar</td><td><span class="chip part">Karar</span></td></tr>
+          <tr><td><a href="#czech">Çek topraklarına core</a></td><td>Ele geçirilen Çek topraklarına her ay core</td><td><span class="chip no">Kendiliğinden</span></td></tr>
+          <tr><td><a href="#fate">Fate of Czechoslovakia</a></td><td>Slovakya Macar, Çek toprakları Alman core'u olur</td><td><span class="chip ok">Focus</span></td></tr>
+          <tr><td><a href="#advisors">Yeni danışmanlar</a></td><td>Wilhelm Frick, Robert Ley, Alfred Rosenberg</td><td><span class="chip part">Danışman</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="detay">
+    <h2 id="detay">Ayrıntılar</h2>
+    <p id="empty" class="empty" hidden>Bu adla bir şey bulunamadı. Başka bir kelime dene, örneğin "core" ya da "Lebensraum".</p>
+    <div class="entries">
+
+      <article class="entry" id="fuhrer" data-keys="lebensraum lebensraum achieved hayat alanı fuhrer führer dream doğu genişleme core çekirdek sovyet rusya ukrayna polonya baltık kafkasya">
+        <div class="entry-head"><h3>The Führer's Dream</h3><span class="chip ok">Focus</span></div>
+        <p class="fr">Eski adı Lebensraum Achieved. Ağaçta Alpine Montan Investments focusunun sağında durur.</p>
+        <div class="label">Şartlar</div>
+        <ul>
+          <li>Sovyetler Birliği'ni Almanya teslim ettirmiş olmalı. Bu olana kadar focus ağaçta görünmez.</li>
+          <li><b>Großdeutsches Reich</b> kurulmuş olmalı. <b>Holy Roman Empire</b> kurulduysa focus alınamaz.</li>
+          <li>Almanya faşist olmalı ve kukla olmamalı.</li>
+          <li>Teslim olma oranı %1'in altında olmalı.</li>
+        </ul>
+        <div class="label">Ödüller</div>
+        <ul>
+          <li>+%5 istikrar ve Hitler'in hırsı ruhu kalkar.</li>
+          <li><b>Lebensraum Achieved</b> ulusal ruhu gelir.</li>
+          <li>156 state'e Alman core'u gelir. Liste aşağıda.</li>
+        </ul>
+        <div class="effects"><span class="fx">Araştırma hızı +%10</span><span class="fx">Danışman maliyeti −%25</span><span class="fx">Ekonomi yasaları −%25</span><span class="fx">Seferberlik yasaları −%25</span><span class="fx">Saldırı savaşında istikrar +%15</span><span class="fx">Aylık nüfus +%50</span><span class="fx">Direniş hedefi −%5</span><span class="fx">İstikrar −%10</span><span class="fx">Günlük PP −0,25</span></div>
+        <div class="label">Core alınan bölgeler</div>
+        <div class="paths">
+          <div class="path"><b>Baltık</b><span>Estonya, Letonya, Litvanya, Memel</span></div>
+          <div class="path"><b>Polonya</b><span>1939 sınırlarının tamamı (Danzig, Varşova, Łódź, Lwów, Białystok…)</span></div>
+          <div class="path"><b>Belarus</b><span>Minsk, Brest, Vitebsk, Pinsk, Hrodna, Pochep</span></div>
+          <div class="path"><b>Ukrayna ve Kırım</b><span>Kiev, Harkov, Odessa, Donetsk, Kherson, Kırım</span></div>
+          <div class="path"><b>Batı Rusya</b><span>Moskova, Leningrad, Smolensk, Tula, Voronej, Stalingrad, Volga Almanları</span></div>
+          <div class="path"><b>Kuzey Rusya</b><span>Arhangelsk, Murmansk, Kola, Karelya, Vologda, Kotlas</span></div>
+          <div class="path"><b>Kafkasya</b><span>Gürcistan, Ermenistan, Azerbaycan, Grozni, Krasnodar, Astrahan</span></div>
+          <div class="path"><b>Slovenya ve İstria</b><span>Ljubljana, Kuzeydoğu Slovenya, Litorale, İstria</span></div>
+          <div class="path"><b>Fransa sınırı</b><span>Alsace, Lorraine, Meuse, Pas de Calais</span></div>
+          <div class="path"><b>Benelux</b><span>Belçika, Hollanda, Lüksemburg</span></div>
+          <div class="path"><b>İsviçre</b><span>Bütün İsviçre</span></div>
+          <div class="path"><b>Avusturya ve Bohemya</b><span>Bütün Avusturya, Bohemya ve Südetler</span></div>
+        </div>
+      </article>
+
+      <article class="entry" id="gro" data-keys="grossdeutsches reich büyük almanya grossdeutschland großdeutschland form kurma isviçre lüksemburg polonya core çekirdek">
+        <div class="entry-head"><h3>Großdeutsches Reich</h3><span class="chip part">Karar</span></div>
+        <p>Formable Nations kararlarındaki Großdeutschland kararı. Bir ülke sadece bir kez ulus kurabilir.</p>
+        <div class="label">Şartlar</div>
+        <ul>
+          <li>Almanya'nın ana state'lerinden 21'ini kontrol et.</li>
+          <li>Avusturya state'lerinden 5'ini kontrol et.</li>
+          <li>Kuzey Südetler, Klaipeda, Poznań, Danzig, Gdynia, Katowice ve Eupen-Malmedy'nin olduğu Alman topraklarından 8'ini kontrol et.</li>
+          <li>Alsace-Moselle ya da Alto Adige'yi kontrol et.</li>
+        </ul>
+        <div class="label">Alt modda eklenenler</div>
+        <ul>
+          <li>İsviçre'nin 5 state'inin hepsi ve Lüksemburg core olur.</li>
+          <li>Zaolzie, Łódź, Białystok, Płock ve Kuzeydoğu Slovenya da core olur.</li>
+          <li>Bu state'ler kararın haritasında da işaretli görünür.</li>
+          <li>The Führer's Dream focusu için bu kararın alınmış olması gerekir.</li>
+        </ul>
+      </article>
+
+      <article class="entry" id="czech" data-keys="çekoslovakya çek bohemya moravya südet sudet zaolzie core çekirdek aylık">
+        <div class="entry-head"><h3>Çek topraklarına core</h3><span class="chip no">Kendiliğinden</span></div>
+        <p>Almanya'nın sahip olduğu her Çek toprağı her ayın başında Alman core'u olur: Bohemya, Moravya, Südetler ve Zaolzie. Slovakya ve Karpat Rutenyası core olmaz. Oyuncu Almanya'da da çalışır.</p>
+      </article>
+
+      <article class="entry" id="fate" data-keys="fate of czechoslovakia çekoslovakya paylaşma slovakya macaristan core çekirdek ilhak">
+        <div class="entry-head"><h3>Fate of Czechoslovakia</h3><span class="chip ok">Focus</span></div>
+        <p>Focus sonunda Çekoslovakya paylaşılınca:</p>
+        <ul>
+          <li>Macaristan'a geçen Slovakya, Doğu Slovakya, Güney Slovakya ve Karpat Rutenyası Macar core'u olur.</li>
+          <li>Almanya'nın ilhak ettiği Bohemya, Moravya ve Südetler aynı anda Alman core'u olur.</li>
+        </ul>
+      </article>
+
+      <article class="entry" id="advisors" data-keys="danışman advisor siyasi danışman frick ley rosenberg">
+        <div class="entry-head"><h3>Yeni danışmanlar</h3><span class="chip part">Danışman</span></div>
+        <p>Siyaset ekranından siyasi danışman olarak seçilir. Almanya faşistken açıktır.</p>
+        <div class="paths">
+          <div class="path"><b>Wilhelm Frick</b><span class="focus">Shrewd Lawmaker</span><span>Politik güç +%5, seferberlik yasaları −%15, garnizona direniş hasarı −%5</span></div>
+          <div class="path"><b>Robert Ley</b><span class="focus">Erratic Union Boss</span><span>Fabrika çıktısı +%10, verimlilik tavanı +%5, verimlilik artışı +%5, hat değiştirme +%5, tüketim malları −%3, istikrar −%5</span></div>
+          <div class="path"><b>Alfred Rosenberg</b><span class="focus">Racial Theorist</span><span>Core olmayan insan gücü +%15, faşizm kayması +0,05, kaymaya direnç +%5, askere alma −%5</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>Bu bilgiler alt modun dosyalarından çıkarıldı. Değerler olaylarla biraz değişebilir.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var q = document.getElementById('q');
+  var clear = document.getElementById('clear');
+  var count = document.getElementById('count');
+  var empty = document.getElementById('empty');
+  var entries = Array.prototype.slice.call(document.querySelectorAll('.entry'));
+  var rows = Array.prototype.slice.call(document.querySelectorAll('tbody tr'));
+  var summary = document.getElementById('ozet').parentNode;
+  var hint = count.textContent;
+  function norm(s) {
+    return s.toLocaleLowerCase('tr').replace(/ı/g, 'i').replace(/ş/g, 's').replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ç/g, 'c').replace(/â/g, 'a').replace(/î/g, 'i').replace(/û/g, 'u');
+  }
+  var index = entries.map(function (el) {
+    return { el: el, id: el.id, text: norm(el.textContent + ' ' + (el.getAttribute('data-keys') || '')) };
+  });
+  function run() {
+    var words = norm(q.value).split(/\s+/).filter(Boolean);
+    var shown = 0;
+    var ids = {};
+    index.forEach(function (it) {
+      var ok = words.every(function (w) { return it.text.indexOf(w) !== -1; });
+      it.el.hidden = !ok;
+      if (ok) { shown++; ids[it.id] = true; }
+    });
+    rows.forEach(function (r) {
+      var a = r.querySelector('a');
+      var id = a ? a.getAttribute('href').slice(1) : '';
+      r.hidden = words.length > 0 && !ids[id];
+    });
+    summary.hidden = words.length > 0 && shown === 0;
+    empty.hidden = !(words.length > 0 && shown === 0);
+    count.textContent = words.length === 0 ? hint : (shown === 0 ? 'Sonuç yok.' : shown + ' debuff bulundu.');
+  }
+  q.addEventListener('input', run);
+  clear.addEventListener('click', function () { q.value = ''; run(); q.focus(); });
+  run();
+})();
+</script>
+</body>
+</html>
